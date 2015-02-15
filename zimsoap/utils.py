@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """ Misc tool functions """
 
+import pythonzimbra
+import pythonzimbra.tools.xmlserializer
+
 import re
 import hmac
 import hashlib
 from xml.dom import minidom
 import xml.etree.ElementTree as ET
-
-import pythonzimbra
-import pythonzimbra.tools.xmlserializer
 
 
 re_zuuid = re.compile(r'[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}')
