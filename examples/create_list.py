@@ -3,8 +3,8 @@ import zimsoap.utils
 from zimsoap.zobjects import *
 
 
-zc = zimsoap.client.ZimbraAdminClient("xxxxxxx", "7071")
-zc.login("zimbra", "xxxxxxxxxx")
+zc = zimsoap.client.ZimbraAdminClient("172.16.58.128", "7071")
+zc.login("zimbra", "vEXDlWOJ")
 a = zc.get_distribution_list(DistributionList(name="testliste@zimbralab.example.org"))
 
 try:
