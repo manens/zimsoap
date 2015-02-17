@@ -7,8 +7,6 @@ core classes for SOAP clients, there are also REST clients here, but used only
 for pre-authentification.
 """
 
-
-from os.path import dirname, abspath, join
 import datetime
 import urllib
 import urllib2
@@ -17,9 +15,9 @@ import time
 import re
 
 import pythonzimbra
-
 import pythonzimbra.tools.auth
 from pythonzimbra.communication import Communication
+
 import utils
 import zobjects
 
@@ -645,20 +643,32 @@ class ZimbraAdminClient(ZimbraAbstractClient):
         })
 
     def add_distribution_list_member(self, distribution_list, members):
+        """
+        :param distribution_list: a DistributionList specifying either :
+                   - id:   the account_id
+                   - name: the name of the list
+        :param members: a list of emails
+        :return: nothing, like Zimbra API
+        """
         members = [{'_content': v} for v in members]
         resp = self.request_single('AddDistributionListMember', {
             'id': self._get_or_fetch_id(distribution_list, self.get_distribution_list),
             'dlm': members
         })
-        return resp
 
     def remove_distribution_list_member(self, distribution_list, members):
+        """
+        :param distribution_list: a DistributionList specifying either :
+                   - id:   the account_id
+                   - name: the name of the list
+        :param members: a list of emails
+        :return: nothing, like Zimbra API
+        """
         members = [{'_content': v} for v in members]
         resp = self.request_single('RemoveDistributionListMember', {
             'id': self._get_or_fetch_id(distribution_list, self.get_distribution_list),
             'dlm': members
         })
-        return resp
 
     def get_account(self, account):
         """ Fetches an account with all its attributes.
