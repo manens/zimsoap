@@ -386,7 +386,15 @@ class DistributionList(ZObject):
         o = super(DistributionList, cls).from_dict(d)
         o.members = []
         if d.has_key('dlm'):
-            o.members = [member["_content"] for member in d["dlm"]]
+            if len(d['dlm']) == 2 and isinstance(d['dlm'], dict):  # transform to list if there is only one attribute
+                childs = [d['dlm']]
+            else:
+                childs = d['dlm']
+        else:
+            childs = []
+
+        if d.has_key('dlm'):
+            o.members = [member["_content"] for member in childs]
         return o
 
 class Signature(ZObject):
