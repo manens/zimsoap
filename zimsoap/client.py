@@ -902,6 +902,15 @@ class ZimbraMailClient(ZimbraAbstractClient):
                     for search in folders["search"]:
                         search["name"] = "%s/%s" % (prefix, search["name"])
                         result.append(zobjects.Search.from_dict(search))
+            if "acl" in folders:
+                if "grant" in folders["acl"]:
+                    if isinstance(folders["acl"]["grant"], list):
+                        for grant in folders["acl"]["grant"]:
+                            grant["name"] = foldername
+                            result.append(zobjects.Grant.from_dict(grant))
+                    else:
+                        folders["acl"]["grant"]["name"] = foldername
+                        result.append(zobjects.Grant.from_dict(folders["acl"]["grant"]))
             result.append(zobjects.Folder.from_dict(folders))
         return result
 

@@ -591,3 +591,7 @@ class Link(Folder):
 class Search(Folder):
     TAG_NAME = 'search'
     ATTRNAME_PROPERTY = 'id'
+
+class Grant(Folder):
+    TAG_NAME = 'grant'
+    ATTRNAME_PROPERTY = 'zid'
